@@ -28,7 +28,10 @@ export class UsuarioModel implements Usuario {
         const hoje = new Date();
         hoje.setHours(0, 0, 0, 0);
 
-        return this.dataNascimento < hoje;
+        let temp: Date = new Date(this.dataNascimento);
+        temp.setHours(0, 0, 0, 0);
+
+        return temp < hoje;
     }
 
 }

@@ -1,1 +1,40 @@
-<p>formulario works!</p>
+<form [formGroup]="formUsuario" (ngSubmit)="salvaDados()">
+    <div>
+        <div>
+            <label>ID:</label>
+            <input type="text" formControlName="id" />
+        </div>
+        <div>
+            <label>Nome:</label>
+            <input type="text" formControlName="nome" />
+        </div>
+        <div>
+            <label>Sobrenome:</label>
+            <input type="text" formControlName="sobrenome" />
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <label>Email:</label>
+            <input type="email" formControlName="email" />
+        </div>
+        <div>
+            <label>Data Nasc.:</label>
+            <input type="date" formControlName="dataNascimento" />
+        </div>
+        <div>
+            <label>Escolaridade:</label>
+            <select formControlName="escolaridade">
+                <option value="1">Infantil</option>
+                <option value="2">Fundamental</option>
+                <option value="3">Médio</option>
+                <option value="4">Superior</option>
+            </select>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit">Salvar</button>
+    </div>
+</form>

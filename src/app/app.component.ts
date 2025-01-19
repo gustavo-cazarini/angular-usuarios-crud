@@ -14,6 +14,7 @@ import { UsuarioModel } from './models/usuario-model';
 export class AppComponent {
   title = 'angular-usuarios-crud';
   listaUsuarios: UsuarioModel[] = [];
+  //listaUsuarios: UsuarioModel[] = [new UsuarioModel(0, 'John', 'Doe', 'johndoe@email.com', new Date(), 4)];
 
   addUsuario(usuario: UsuarioModel) {
     this.listaUsuarios.push(usuario);

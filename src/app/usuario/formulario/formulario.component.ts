@@ -1,11 +1,18 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { UsuarioModel } from '../../models/usuario-model';
+import { JsonPipe } from '@angular/common';
+
+export const dataNascValidator = (control: AbstractControl) : ValidationErrors | null => {
+  let dataNasc = new Date(`${control.value} 00:00:00`);
+
+  return dataNasc >= new Date() ? { dataInvalida: 'A data de nascimento deve ser menor que a atual' } : null;
+};
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, JsonPipe],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })
@@ -13,15 +20,24 @@ export class FormularioComponent {
   @Output() novoUsuarioEvent = new EventEmitter();
 
   formUsuario = new FormGroup({
-    id: new FormControl<number | null>(null),
-    nome: new FormControl<string | null>(null),
-    sobrenome: new FormControl<string | null>(null),
-    email: new FormControl<string | null>(null),
-    dataNascimento: new FormControl<string | null>(''),
-    escolaridade: new FormControl<number | null>(null)
+    id: new FormControl<number | null>(null, [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+    nome: new FormControl<string | null>(null, Validators.required),
+    sobrenome: new FormControl<string | null>(null, Validators.required),
+    email: new FormControl<string | null>(null, [
+      Validators.required,
+      Validators.email
+    ]),
+    dataNascimento: new FormControl<string | null>(null, { validators: [dataNascValidator]}),
+    escolaridade: new FormControl<number | null>(null, Validators.required)
   });
 
   salvaDados() {
+    if (this.formUsuario.invalid) {
+      alert('erro');
+      return;
+
+    }
+
     let usuario = new UsuarioModel(
       this.formUsuario.value.id ?? 0,
       this.formUsuario.value.nome ?? '',
@@ -34,6 +50,9 @@ export class FormularioComponent {
     if(this.usuarioValido(usuario))
       this.novoUsuarioEvent.emit(usuario);
   }
+
+
+  // VALIDAÇÕES
 
   usuarioValido(usuario: UsuarioModel): boolean {
     let msgErr: string = ""
@@ -62,6 +81,5 @@ export class FormularioComponent {
       return new Date(auxDataStr);
 
     }
-
   }
 }

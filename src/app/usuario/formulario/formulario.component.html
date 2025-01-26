@@ -1,8 +1,6 @@
-
 <form [formGroup]="formUsuario" (ngSubmit)="salvaDados()">
-    =={{formUsuario.controls.dataNascimento.errors | json }}==
     <div>
-        <div>
+        <div class="form--control-container">
             <label>ID:</label>
             <input type="text" formControlName="id" />
             @if (formUsuario.controls.id.invalid && (formUsuario.controls.id.touched || formUsuario.controls.id.dirty)) {
@@ -10,12 +8,12 @@
                     <small class="form--msg-invalido">É necessário informar o ID</small>
                 }
                 @if (formUsuario.controls.id.getError('pattern')) {
-                    <small>O ID deve conter somente números</small>
+                    <small class="form--msg-invalido">O ID deve conter somente números</small>
                 }
             }
         </div>
 
-        <div>
+        <div class="form--control-container">
             <label>Nome:</label>
             <input type="text" formControlName="nome" />
             @if (formUsuario.controls.nome.invalid && (formUsuario.controls.nome.touched || formUsuario.controls.nome.dirty)) {
@@ -25,43 +23,43 @@
             }
         </div>
 
-        <div>
+        <div class="form--control-container">
             <label>Sobrenome:</label>
             <input type="text" formControlName="sobrenome" />
             @if (formUsuario.controls.sobrenome.invalid && (formUsuario.controls.sobrenome.touched || formUsuario.controls.sobrenome.dirty)) {
                 @if(formUsuario.controls.sobrenome.getError('required')) {
-                    <small>É necessário informar o sobrenome</small>
+                    <small class="form--msg-invalido">É necessário informar o sobrenome</small>
                 }
             }
         </div>
     </div>
 
     <div>
-        <div>
+        <div class="form--control-container">
             <label>Email:</label>
             <input type="email" formControlName="email" />
             @if (formUsuario.controls.email.invalid && (formUsuario.controls.email.touched || formUsuario.controls.email.dirty)) {
                 @if(formUsuario.controls.email.getError('required')) {
-                    <small>É necessário informar o email</small>
+                    <small class="form--msg-invalido">É necessário informar o email</small>
                 }
                 @if(formUsuario.controls.email.getError('email')) {
-                    <small>O email está em um formato inválido</small>
+                    <small class="form--msg-invalido">O email está em um formato inválido</small>
                 }
             }
         </div>
-        <div>
+        <div class="form--control-container">
             <label>Data Nasc.:</label>
             <input type="date" formControlName="dataNascimento" />
             @if (formUsuario.controls.dataNascimento.invalid && (formUsuario.controls.dataNascimento.touched || formUsuario.controls.dataNascimento.dirty)) {
                 @if(formUsuario.controls.dataNascimento.getError('required')) {
-                    <small>É necessário informar a data de nascimento</small>
+                    <small class="form--msg-invalido">É necessário informar a data de nascimento</small>
                 }
                 @if(formUsuario.controls.dataNascimento.getError('dataInvalida')) {
-                    <small>{{formUsuario.controls.dataNascimento.getError('dataInvalida')}}</small>
+                    <small class="form--msg-invalido">{{formUsuario.controls.dataNascimento.getError('dataInvalida')}}</small>
                 }
             }
         </div>
-        <div>
+        <div class="form--control-container">
             <label>Escolaridade:</label>
             <select formControlName="escolaridade">
                 <option value="1">Infantil</option>
@@ -71,7 +69,7 @@
             </select>
             @if (formUsuario.controls.escolaridade.invalid && (formUsuario.controls.escolaridade.touched || formUsuario.controls.escolaridade.dirty)) {
                 @if(formUsuario.controls.escolaridade.getError('required')) {
-                    <small>É necessário informar a escolaridade</small>
+                    <small class="form--msg-invalido">É necessário informar a escolaridade</small>
                 }
             }
         </div>

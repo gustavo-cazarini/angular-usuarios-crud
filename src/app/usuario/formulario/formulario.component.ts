@@ -12,7 +12,7 @@ export const dataNascValidator = (control: AbstractControl) : ValidationErrors |
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe],
+  imports: [ReactiveFormsModule],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })

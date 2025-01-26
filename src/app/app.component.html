@@ -1,3 +1,5 @@
-<app-navbar />
-<app-formulario (novoUsuarioEvent)="addUsuario($event)" />
-<app-lista [listaUsuarios]="listaUsuarios" />
+<div class="grid-container">
+    <app-navbar />
+    <app-formulario (novoUsuarioEvent)="addUsuario($event)" />
+    <app-lista [listaUsuarios]="listaUsuarios" />
+</div>

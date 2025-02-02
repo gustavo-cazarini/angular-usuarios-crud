@@ -1,0 +1,47 @@
+.msg--no-items {
+    color: #f00;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
+
+table {
+    border-spacing: 0;
+    width: 100%;
+}
+
+table thead {
+    background-color: rgb(60, 90, 156);
+    color: #fff;
+    height: 40px;
+}
+
+table, th, td {
+    border: 1px solid #000;
+}
+
+td {
+    height: 40px;
+    padding: 0px 5px;
+}
+
+table tbody tr:hover {
+    background-color: rgb(200, 213, 240);
+    cursor: pointer;
+}
+
+table, table th:first-child, table tr:first-child {
+    border-top-left-radius: 10px;
+}
+
+table, table th:last-child, table tr:first-child {
+    border-top-right-radius: 10px;
+}
+
+table, table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+table, table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FormularioComponent } from "./usuario/formulario/formulario.component";
 import { ListaComponent } from "./usuario/lista/lista.component";
 import { UsuarioModel } from './models/usuario-model';
+import { UsuarioService } from './service/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,10 @@ import { UsuarioModel } from './models/usuario-model';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  usuarioService = inject(UsuarioService);
   title = 'angular-usuarios-crud';
-  listaUsuarios: UsuarioModel[] = [];
-  //listaUsuarios: UsuarioModel[] = [new UsuarioModel(0, 'John', 'Doe', 'johndoe@email.com', new Date(), 4)];
-
+  
   addUsuario(usuario: UsuarioModel) {
-    this.listaUsuarios.push(usuario);
+    this.usuarioService.addUsuario(usuario);
   }
 }

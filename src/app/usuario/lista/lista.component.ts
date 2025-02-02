@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { UsuarioModel } from '../../models/usuario-model';
+import { UsuarioService } from '../../service/usuario.service';
 
 @Component({
   selector: 'app-lista',
@@ -9,6 +10,5 @@ import { UsuarioModel } from '../../models/usuario-model';
   styleUrl: './lista.component.css'
 })
 export class ListaComponent {
-  @Input() listaUsuarios: UsuarioModel[] = [];
-
+  usuarioService = inject(UsuarioService);
 }
